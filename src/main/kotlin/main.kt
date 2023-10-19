@@ -1,12 +1,12 @@
 fun main() {
-    val commission = calculatePrice("Mastercard", 0, 100000)
+    val commission = calculatePrice("VK Pay", 0, 100000)
     println(commission)
 }
 
 fun calculatePrice(typeCard: String, totalAmount: Int, amountTransfer: Int): String {
     val total = userTypeCard(typeCard) * amountTransfer
 
-    var commissionMM =
+    val commissionMM =
         if (amountTransfer > 150_000) {
             "Сумма перевода не должна превышать 150_000 рублей"
         } else if ((typeCard == "Mastercard" || typeCard == "Maestro") && amountTransfer < 75_000) {
