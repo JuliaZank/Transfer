@@ -59,8 +59,8 @@ fun calculatePrice(typeCard: String, amountTransfer: Int): String {
 
 
 fun userTypeCard(typeCard: String) = when (typeCard) {
-    "Mastercard", "Maestro" -> 0.06
-    "Visa", "Мир" -> 0.075
+    "Mastercard", "Maestro" -> 0.006
+    "Visa", "Мир" -> 0.0075
     else -> 0.0
 }
 
