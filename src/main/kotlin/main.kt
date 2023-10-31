@@ -1,25 +1,24 @@
 fun main() {
-   val commission = calculatePrice("VK Pay", 0, 100000)
-            println(commission)
+    val commission = calculatePrice(amountTransfer = 650_000)
+    println(commission)
 }
 
-fun calculatePrice(typeCard: String, amountPreviousTransfers: Int, amountTransfer: Int): String {
+fun calculatePrice(typeCard: String = "VK Pay", amountPreviousTransfers: Int = 0, amountTransfer: Int): String {
     val total = userTypeCard(typeCard) * amountTransfer
 
-    return when(typeCard) {
-        "Mastercard", "Maestro" -> if (amountTransfer < 75_000 && amountTransfer + amountPreviousTransfers <= 600_000) {
-            "Комиссия составит 0 рублей"
-        } else if (amountTransfer in 75_000..150_000 && amountTransfer + amountPreviousTransfers <= 600_000) {
-            "Комиссия составит ${total + 20} рублей"
-        } else "Превышен лимит"
-
-        "Visa", "Мир" -> if (amountTransfer <= 150_000 && total < 35 && amountTransfer + amountPreviousTransfers <= 600_000) {
-            "Комиссия составит 35 рублей"
-        } else if (amountTransfer <= 150_000 && amountTransfer + amountPreviousTransfers <= 600_000) {
-            "Комиссия составит $total рублей"
-        } else "Превышен лимит"
-        else -> if (amountTransfer <= 15_000 && amountTransfer + amountPreviousTransfers <= 40_000) "Комиссия составит $total рублей" else "Превышен лимит"
+    when (typeCard) {
+        "Mastercard", "Maestro", "Visa", "Мир" -> if (amountTransfer > 150_000 || amountTransfer + amountPreviousTransfers > 600_000) return "Превышен лимит"
+        "VK Pay" -> if (amountTransfer > 15_000 || amountTransfer + amountPreviousTransfers > 40_000) return "Превышен лимит"
     }
+
+    return when (typeCard) {
+
+        "Mastercard", "Maestro" -> if (amountTransfer < 75_000) "Комиссия составит 0 рублей" else "Комиссия составит ${total + 20} рублей"
+
+        "Visa", "Мир" -> if (total < 35) "Комиссия составит 35 рублей" else "Комиссия составит $total рублей"
+
+        else -> "Комиссия составит $total рублей"
+        }
 }
 
 
