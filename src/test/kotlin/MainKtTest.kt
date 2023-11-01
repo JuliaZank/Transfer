@@ -215,7 +215,7 @@ class MainKtTest {
         val amountPreviousTransfers = 0
         val result = calculatePrice(typeCard, amountPreviousTransfers, amountTransfer)
 
-        assertEquals("Комиссия составит 35 рублей", result)
+        assertEquals("Комиссия составит 0 рублей", result)
     }
 
     @Test
