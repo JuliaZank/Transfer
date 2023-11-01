@@ -1,6 +1,5 @@
+
 fun main() {
-    val commission = calculatePrice(amountTransfer = 650_000)
-    println(commission)
 }
 
 fun calculatePrice(typeCard: String = "VK Pay", amountPreviousTransfers: Int = 0, amountTransfer: Int): String {
@@ -18,7 +17,7 @@ fun calculatePrice(typeCard: String = "VK Pay", amountPreviousTransfers: Int = 0
         "Visa", "Мир" -> if (total < 35) "Комиссия составит 35 рублей" else "Комиссия составит $total рублей"
 
         else -> "Комиссия составит $total рублей"
-        }
+    }
 }
 
 
